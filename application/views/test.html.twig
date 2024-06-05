@@ -71,60 +71,67 @@
                 <table width="100%" border="0" cellpadding="5" cellspacing="0">
                     <tbody>
                     <tr>
-                        <td colspan="2">DESTINATARIO</td>
+                        <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>DESTINATARIO</strong</td>
                     </tr>
                     <tr class="border_top">
                         <td width="60%" align="left"><strong>Razón Social:</strong>  {{ cl.rznSocial }}</td>
                         {# <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td> #}
                         <td width="40%" align="left"><strong>{{cl.tipoDoc}}:</strong>  {{ cl.numDoc }}</td>
                     </tr>
-                    <tr>
+                    {# <tr>
                         <td width="40%" align="left" colspan="2"><strong>Dirección:</strong>  {% if cl.address %}{{ cl.address.direccion }}{% endif %}</td>
-                    </tr>
+                    </tr> #}
                     </tbody></table>
-            </div><br>
-            <div class="tabla_borde">
+            </div>
+            <br>
                 {% set cr = doc.comprador %}
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tbody>
-                    <tr>
-                        <td colspan="2">COMPRADOR</td>
-                    </tr>
-                    <tr class="border_top">
-                        <td width="60%" align="left"><strong>Razón Social:</strong>  {{ cr.rznSocial }}</td>
-                        {# <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td> #}
-                        <td width="40%" align="left"><strong>{{cr.tipoDoc}}:</strong>  {{ cr.numDoc }}</td>
-                    </tr>
-                    <tr>
-                        <td width="40%" align="left" colspan="2"><strong>Dirección:</strong>  {% if cr.address %}{{ cr.address.direccion }}{% endif %}</td>
-                    </tr>
-                    </tbody></table>
-            </div><br>
-            <div class="tabla_borde">
+                {% if cr %}
+                    <div class="tabla_borde">
+                        <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>COMPRADOR</strong></td>
+                            </tr>
+                            <tr class="border_top">
+                                <td width="60%" align="left"><strong>Razón Social:</strong>  {{ cr.rznSocial }}</td>
+                                {# <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td> #}
+                                <td width="40%" align="left"><strong>{{cr.tipoDoc}}:</strong>  {{ cr.numDoc }}</td>
+                            </tr>
+                            {# <tr>
+                                <td width="40%" align="left" colspan="2"><strong>Dirección:</strong>  {% if cr.address %}{{ cr.address.direccion }}{% endif %}</td>
+                            </tr> #}
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                {% endif %}
                 {% set te = doc.tercero %}
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tbody>
-                    <tr>
-                        <td colspan="2">TERCERO</td>
-                    </tr>
-                    <tr class="border_top">
-                        <td width="60%" align="left"><strong>Razón Social:</strong>  {{ te.rznSocial }}</td>
-                        {# <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td> #}
-                        <td width="40%" align="left"><strong>{{te.tipoDoc}}:</strong>  {{ te.numDoc }}</td>
-                    </tr>
-                    <tr>
-                        <td width="40%" align="left" colspan="2"><strong>Dirección:</strong>  {% if te.address %}{{ te.address.direccion }}{% endif %}</td>
-                    </tr>
-                    </tbody></table>
-            </div><br>
-
-
+                {% if te %}
+                    <div class="tabla_borde">
+                        <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>TERCERO</strong></td>
+                            </tr>
+                            <tr class="border_top">
+                                <td width="60%" align="left"><strong>Razón Social:</strong>  {{ te.rznSocial }}</td>
+                                {# <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td> #}
+                                <td width="40%" align="left"><strong>{{te.tipoDoc}}:</strong>  {{ te.numDoc }}</td>
+                            </tr>
+                            {# <tr>
+                                <td width="40%" align="left" colspan="2"><strong>Dirección:</strong>  {% if te.address %}{{ te.address.direccion }}{% endif %}</td>
+                            </tr> #}
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                {% endif %}
             <div class="tabla_borde">
                 {% set cl = doc.destinatario %}
                 <table width="100%" border="0" cellpadding="5" cellspacing="0">
                     <tbody>
                     <tr>
-                        <td colspan="2">ENVIO</td>
+                        <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>ENVIO</strong></td>
                     </tr>
                     <tr class="border_top">
                         <td width="60%" align="left">
@@ -134,40 +141,46 @@
                     </tr>
                     <tr>
                         <td width="60%" align="left"><strong>Motivo Traslado:</strong>  {{ doc.envio.desTraslado }} </td>
-                        <td width="40%" align="left"><strong>Modalidad de Transporte:</strong>  {{ doc.envio.modTraslado }} </td>
+                        <td width="40%" align="left"><strong>Modalidad de Transporte:</strong>  {{ doc.modTraslado }} </td>
                     </tr>
                     <tr>
                         <td width="60%" align="left"><strong>Peso Bruto Total ({{ doc.envio.undPesoTotal }}):</strong>  {{ doc.envio.pesoTotal }} </td>
                         <td width="40%">{% if doc.envio.numBultos %}<strong>Número de Bultos:</strong>  {{ doc.envio.numBultos }}{% endif %}</td>
                     </tr>
                     <tr>
-                        <td width="60%" align="left"><strong>P. Partida:</strong>  {{ doc.envio.partida.ubigueo }} - {{ doc.envio.partida.direccion }}</td>
-                        <td width="40%" align="left"><strong>P. Llegada: </strong>  {{ doc.envio.llegada.ubigueo }} - {{ doc.envio.llegada.direccion }}</td>
+                        <td width="60%" align="left"><strong>P. Partida:</strong>  {{ doc.envio.partida.ubigeo }} - {{ doc.envio.partida.direccion }}</td>
+                        <td width="40%" align="left"><strong>P. Llegada: </strong>  {{ doc.envio.llegada.ubigeo }} - {{ doc.envio.llegada.direccion }}</td>
                     </tr>
                     </tbody></table>
-            </div><br>
+            </div>
+            <br>
             {% set tr = doc.envio.transportista %}
             {% if tr %}
-            <div class="tabla_borde">
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tbody>
-                    <tr>
-                        <td colspan="2">TRANSPORTE</td>
-                    </tr>
-                    <tr class="border_top">
-                        <td width="60%" align="left"><strong>Razón Social:</strong>  {{ tr.rznSocial }}</td>
-                        <td width="40%" align="left"><strong>{{ tr.tipoDoc }}:</strong>  {{ tr.numDoc }}</td>
-                    </tr>
-                    <tr>
-                        <td width="60%" align="left"><strong>Vehiculo:</strong>  {{ tr.placa }}</td>
-                        <td width="40%" align="left"><strong>Conductor:</strong>  {{ tr.choferTipoDoc }} {{ tr.choferDoc }}</td>
-                    </tr>
-                    </tbody></table>
-            </div><br>
+                <div class="tabla_borde">
+                    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                        <tbody>
+                        <tr>
+                            <td colspan="2">TRANSPORTE</td>
+                        </tr>
+                        <tr class="border_top">
+                            <td width="60%" align="left"><strong>Razón Social:</strong>  {{ tr.rznSocial }}</td>
+                            <td width="40%" align="left"><strong>{{ tr.tipoDoc }}:</strong>  {{ tr.numDoc }}</td>
+                        </tr>
+                        {# <tr>
+                            <td width="60%" align="left"><strong>Vehiculo:</strong>  {{ tr.placa }}</td>
+                            <td width="40%" align="left"><strong>Conductor:</strong>  {{ tr.choferTipoDoc }} {{ tr.choferDoc }}</td>
+                        </tr> #}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
             {% endif %}
             <div class="tabla_borde">
                 <table width="100%" border="0" cellpadding="5" cellspacing="0">
                     <tbody>
+                    <tr>
+                        <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="5"><strong>BIENES TRANSPORTADOS</strong></td>
+                    </tr>
                     <tr>
                         <td align="center" class="bold">Item</td>
                         <td align="center" class="bold">Código</td>
@@ -185,7 +198,101 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table></div>
+                </table>
+            </div>
+            <br>
+            {% if doc.addDocs|length > 0 %}
+            <div class="tabla_borde">
+                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="6"><strong>DOCUMENTOS ADICIONALES</strong></td>
+                    </tr>
+                    <tr class="border_top">
+                        <td align="center" class="bold">Emisor</td>
+                        <td align="center" class="bold">Nro.Documento</td>
+                        <td align="center" class="bold">Descripción</td>
+                    </tr>
+                        {% for det in doc.addDocs %}
+                        <tr class="border_top">
+                            <td align="center">{{ det.emisor }}</td>
+                            <td align="center">{{ det.nro }}</td>
+                            <td align="center">{{ det.tipoDesc }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            {% endif %}
+
+
+            <div class="tabla_borde">
+                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>DATOS DEL TRANSPORTE</strong></td>
+                    </tr>
+                    <tr class="border_top">
+                        <td width="50%" align="right">VEHICULO PRINCIPAL:</td>
+                        <td width="50%" align="left">{{ doc.envio.vehiculo.placa }}</td>
+                    </tr>
+                        {% for secu in doc.envio.vehiculo.secundarios %}
+                        <tr>
+                            <td width="50%" align="right">VEHICULO SECUNDARIO:</td>
+                            <td width="50%" align="left">{{ secu.placa }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+
+            <div class="tabla_borde">
+                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="4"><strong>DATOS DEL CHOFER</strong></td>
+                    </tr>
+                    <tr class="border_top">
+                        <td align="center" class="bold">Tipo</td>
+                        <td align="center" class="bold">Chofer</td>
+                        <td align="center" class="bold">Nro.Doc</td>
+                        <td align="center" class="bold">Licencia</td>
+                    </tr>
+                        {% for chofer in doc.envio.choferes %}
+                        <tr class="border_top">
+                            <td align="center">{{ chofer.tipo }}</td>
+                            <td align="center">{{ chofer.apellidos }} {{ chofer.nombres }}</td>
+                            <td align="center">{{ chofer.nroDoc }}</td>
+                            <td align="center">{{ chofer.licencia }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+
+            {% set indicount = doc.envio.indicadores|length %}
+            {% if indicount > 0 %}
+                <div class="tabla_borde">
+                    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                        <tbody>
+                            <tr class="border_top">
+                                <td rowspan="{{indicount}}">INDICADORES DE ENVÍO SUNAT</td>
+                            </tr>
+
+                            {% for indicador in doc.envio.indicadores %}
+                            <tr >
+                                <td align="center">{{ indicador }}</td>
+                            </tr>
+                            {% endfor %}                 
+                        </tbody>
+                    </table>
+                </div>
+            {%  endif %}
+            <br>
+
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tbody><tr>
                     <td width="50%" valign="top">
@@ -206,7 +313,8 @@
                     </td>
                     <td width="50%" valign="top"></td>
                 </tr>
-                </tbody></table>
+                </tbody>
+            </table>
             {% if max_items is defined and doc.details|length > max_items %}
                 <div style="page-break-after:always;"></div>
             {% endif %}

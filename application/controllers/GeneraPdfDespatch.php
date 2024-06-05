@@ -206,7 +206,7 @@ class GeneraPdfDespatch extends RestController
       $client = new Client_model();
 
       
-      print_r($datos);
+      
       // print_r($company->getCompanyStore());
       // $company->setId($companyId);
 
@@ -223,6 +223,7 @@ class GeneraPdfDespatch extends RestController
       // print_r($company);
       
       $serialize = new Serialize;
+      print_r($datos);
       $resp=$serialize->GenerarPDF($datos);
       
       $this->response(array('response' => $resp), 200);

@@ -72,7 +72,7 @@ class Serialize {
         
         $Respuesta=new RespuestaPdf;
         try{
-            $logo=base64_encode(file_get_contents('E:\USO_APIFAFIO\LogoFafio.png'));
+            $logo=base64_encode(file_get_contents('C:\xampp\htdocs\guiaapi\LogoFafio.png'));
             
             $Twig = new Twig();
             $cata=new Cata;
@@ -91,17 +91,18 @@ class Serialize {
             
             $Invoice=$Twig->render('test.html',array('doc'=>$doc));
             
-            $path = 'D:\xampp\htdocs\apiguias\vendor\bin\wkhtmltopdf.exe';
+            $path = 'C:\xampp\htdocs\guiaapi\vendor\bin\wkhtmltopdf.exe';
 
             $pdf = new Pdf(array(
                 'binary'=>$path,
                 'no-outline',         // Make Chrome not complain
             ));
 
+
             $pdf->addPage($Invoice);
+            
 
             $pdf->saveAs('Guia.pdf');
-
             $Respuesta->setTramaPdf(base64_encode($pdf->toString()));
             $Respuesta->setExito(true);
             return $Respuesta;          
