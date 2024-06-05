@@ -187,6 +187,7 @@ class GeneraXmlDespatch extends RestController
 
       $datos = json_decode(file_get_contents("php://input"),true);
 
+      
       // $datos=json_decode(json_encode($datos));
       
       // $this->response($datos, 200);

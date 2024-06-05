@@ -72,7 +72,8 @@ class Serialize {
         
         $Respuesta=new RespuestaPdf;
         try{
-            $logo=base64_encode(file_get_contents('C:\xampp\htdocs\guiaapi\LogoFafio.png'));
+            // $logo=base64_encode(file_get_contents('D:\xampp\htdocs\guiaapi\LogoFafio.png'));
+            $logo=base64_encode(file_get_contents('E:\USO_APIFAFIO\LogoFafio.png'));
             
             $Twig = new Twig();
             $cata=new Cata;
@@ -91,7 +92,7 @@ class Serialize {
             
             $Invoice=$Twig->render('test.html',array('doc'=>$doc));
             
-            $path = 'C:\xampp\htdocs\guiaapi\vendor\bin\wkhtmltopdf.exe';
+            $path = 'D:\xampp\htdocs\apiguias\vendor\bin\wkhtmltopdf.exe';
 
             $pdf = new Pdf(array(
                 'binary'=>$path,

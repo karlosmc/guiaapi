@@ -95,21 +95,21 @@
 	<cac:Shipment>
 		<cbc:ID>SUNAT_Envio</cbc:ID>
 		<cbc:HandlingCode listAgencyName="PE:SUNAT" listName="Motivo de traslado" listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo20">{{ envio.codTraslado }}</cbc:HandlingCode>
-        {% if envio.desTraslado %}
-		<cbc:HandlingInstructions>{{ envio.desTraslado }}</cbc:HandlingInstructions>
+    {% if envio.desTraslado %}
+			<cbc:HandlingInstructions>{{ envio.desTraslado }}</cbc:HandlingInstructions>
 		{% endif %}
 		{% if envio.sustentoPeso %}
-		<cbc:Information>{{ envio.sustentoPeso }}</cbc:Information>
+			<cbc:Information>{{ envio.sustentoPeso }}</cbc:Information>
 		{% endif %}
 		<cbc:GrossWeightMeasure unitCode="{{ envio.undPesoTotal }}">{{ envio.pesoTotal }}</cbc:GrossWeightMeasure>
 		{% if envio.pesoItems %}
-		<cbc:NetWeightMeasure unitCode="KGM">{{ envio.pesoItems }}</cbc:NetWeightMeasure>
+			<cbc:NetWeightMeasure unitCode="KGM">{{ envio.pesoItems }}</cbc:NetWeightMeasure>
 		{% endif %}
     {% if envio.numBultos %}
-		<cbc:TotalTransportHandlingUnitQuantity>{{ envio.numBultos }}</cbc:TotalTransportHandlingUnitQuantity>
+			<cbc:TotalTransportHandlingUnitQuantity>{{ envio.numBultos }}</cbc:TotalTransportHandlingUnitQuantity>
 		{% endif %}
 		{% for indicador in envio.indicadores %}
-		<cbc:SpecialInstructions>{{ indicador }}</cbc:SpecialInstructions>
+			<cbc:SpecialInstructions>{{ indicador }}</cbc:SpecialInstructions>
 		{% endfor %}
 		<cac:ShipmentStage>
 			<cbc:TransportModeCode listName="Modalidad de traslado" listAgencyName="PE:SUNAT" listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo18">{{ envio.modTraslado }}</cbc:TransportModeCode>
@@ -145,23 +145,23 @@
 			<cac:DeliveryAddress>
 				<cbc:ID schemeAgencyName="PE:INEI" schemeName="Ubigeos">{{ envio.llegada.ubigeo }}</cbc:ID>
 				{% if envio.llegada.codLocal %}
-				<cbc:AddressTypeCode listID="{{ envio.llegada.ruc }}">{{ envio.llegada.codLocal }}</cbc:AddressTypeCode>
+					<cbc:AddressTypeCode listID="{{ envio.llegada.ruc }}" listAgencyName="PE:SUNAT" listName="Establecimientos anexos">{{ envio.llegada.codLocal }}</cbc:AddressTypeCode>
 				{% endif %}
 				<cac:AddressLine>
 					<cbc:Line>{{ envio.llegada.direccion }}</cbc:Line>
 				</cac:AddressLine>
 			</cac:DeliveryAddress>
-			<cac:Despatch>
+		<cac:Despatch>
 				<cac:DespatchAddress>
 					<cbc:ID schemeAgencyName="PE:INEI" schemeName="Ubigeos">{{ envio.partida.ubigeo }}</cbc:ID>
 					{% if envio.partida.codLocal %}
-						<cbc:AddressTypeCode listID="{{ envio.partida.ruc }}">{{ envio.partida.codLocal }}</cbc:AddressTypeCode>
+						<cbc:AddressTypeCode listID="{{ envio.partida.ruc }}" listAgencyName="PE:SUNAT" listName="Establecimientos anexos">{{ envio.partida.codLocal }}</cbc:AddressTypeCode>
 					{% endif %}
 					<cac:AddressLine>
 						<cbc:Line>{{ envio.partida.direccion }}</cbc:Line>
 					</cac:AddressLine>
 				</cac:DespatchAddress>
-			</cac:Despatch>
+		</cac:Despatch>
 		</cac:Delivery>
 		{% for precinto in envio.contenedores %}
 		<cac:TransportHandlingUnit>
