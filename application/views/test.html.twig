@@ -111,7 +111,7 @@
                         <table width="100%" border="0" cellpadding="5" cellspacing="0">
                             <tbody>
                             <tr>
-                                <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>TERCERO</strong></td>
+                                <td style='background-color:#D0D0D0; border-radius:10px 10px 0 0;' colspan="2"><strong>PROVEEDOR</strong></td>
                             </tr>
                             <tr class="border_top">
                                 <td width="60%" align="left"><strong>Razón Social:</strong>  {{ te.rznSocial }}</td>
@@ -226,7 +226,7 @@
             <br>
             {% endif %}
 
-
+        {% if doc.envio.vehiculo %}
             <div class="tabla_borde">
                 <table width="100%" border="0" cellpadding="5" cellspacing="0">
                     <tbody>
@@ -247,7 +247,9 @@
                 </table>
             </div>
             <br>
+        {% endif %}
 
+        {% if doc.envio.chofer|length > 0 %}
             <div class="tabla_borde">
                 <table width="100%" border="0" cellpadding="5" cellspacing="0">
                     <tbody>
@@ -272,21 +274,22 @@
                 </table>
             </div>
             <br>
+        {% endif %}
 
             {% set indicount = doc.envio.indicadores|length %}
             {% if indicount > 0 %}
                 <div class="tabla_borde">
                     <table width="100%" border="0" cellpadding="5" cellspacing="0">
                         <tbody>
-                            <tr class="border_top">
-                                <td rowspan="{{indicount}}">INDICADORES DE ENVÍO SUNAT</td>
+                            <tr class="">
+                                <td align="right" style='background-color:#D0D0D0; border-radius:10px 0 0 10px;' rowspan="{{indicount + 1}}"><strong>INDICADORES DE ENVÍO SUNAT</strong></td>
                             </tr>
 
                             {% for indicador in doc.envio.indicadores %}
-                            <tr >
-                                <td align="center">{{ indicador }}</td>
+                            <tr>
+                                <td align="left">{{ indicador }}</td>
                             </tr>
-                            {% endfor %}                 
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

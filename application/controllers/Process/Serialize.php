@@ -82,6 +82,10 @@ class Serialize {
             $modalidadTransporte = $cata->getValueCatalog($doc['envio']['modTraslado'],'MT');
             $doc['name']=$name;
             $doc['destinatario']['tipoDoc']=$tipodocDestinatario;
+
+            if($doc['tercero']){
+                $doc['tercero']['tipoDoc']=$cata->getValueCatalog($doc['tercero']['tipoDoc'],'IDE');;
+            }
             $doc['logo']="data:image/png;base64,".$logo;
             $doc['modTraslado']=$modalidadTransporte;
             
